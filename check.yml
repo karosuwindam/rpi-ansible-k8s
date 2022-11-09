@@ -5,7 +5,3 @@
     - vars/all/secrets.yml
   roles:
     - oscheck
-    - boot
-    - swap
-    - network
-    - kubernetes

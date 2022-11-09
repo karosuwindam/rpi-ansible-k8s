@@ -4,3 +4,9 @@ kubernetes:
 	$(ANSIBLE_CMD) kubernetes.yml
 containerd:
 	$(ANSIBLE_CMD) containerd.yml
+oscheck:
+	$(ANSIBLE_CMD) check.yml
+go:
+	$(ANSIBLE_CMD) go.yml
+docker:
+	$(ANSIBLE_CMD) docker.yml
