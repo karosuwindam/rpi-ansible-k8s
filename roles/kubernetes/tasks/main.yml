@@ -10,14 +10,14 @@
   with_items:
     - deb https://apt.kubernetes.io/ kubernetes-xenial main
 
-- name: Apto UnMark
-  dpkg_selections:
-    name: "{{ item }}"
-    selection: unhold
-  with_items:
-    - kubectl
-    - kubelet
-    - kubeadm
+# - name: Apto UnMark
+#   dpkg_selections:
+#     name: "{{ item }}"
+#     selection: unhold
+#   with_items:
+#     - kubectl
+#     - kubelet
+#     - kubeadm
 
 - name: Install k8s-app
   apt:
