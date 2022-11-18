@@ -1,0 +1,6 @@
+- name: install cgroup
+  apt:
+    name:
+      - cgroup-tools
+      - cgroup-mount
+      - libcgroup1
