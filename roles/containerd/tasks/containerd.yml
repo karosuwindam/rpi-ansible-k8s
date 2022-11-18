@@ -8,3 +8,9 @@
     src: ./templates/containerd.conf
     dest: /etc/modules-load.d/containerd.conf
     backup: false
+
+- name: Setup Containerd kubelet
+  template:
+    src: ./templates/config.toml
+    dest: /etc/containerd/config.toml
+    backup: false
