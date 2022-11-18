@@ -2,5 +2,5 @@
   apt:
     name:
       - cgroup-tools
-      - cgroup-mount
+      - cgroupfs-mount
       - libcgroup1
