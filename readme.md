@@ -8,7 +8,7 @@ sudo apt update && sudo apt upgrade -y && sudo apt install make curl git ansible
 
 以下コマンドでkeyを作成
 ```
-ssh-keygen
+ssh-keygen -q  -t rsa -b 4096 -C '' -N '' -f id_rsa
 ```
 
 以下のコマンドでKeyをコピーする

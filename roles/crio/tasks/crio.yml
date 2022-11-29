@@ -10,7 +10,7 @@ o:{{ crio.version }}/{{ crio.os }}/Release.key"
   with_items:
     - deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/{{ crio.os }}/ /
     - deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-
-o:/{{ crio.version }}/{{ crio.os }}/ /"
+o:/{{ crio.version }}/{{ crio.os }}/ /
 
 - name: Install cri-o
   apt:
