@@ -37,6 +37,5 @@ sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket /var/run/contain
 
 flannelの適用
 ```
-kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-
-flannel.yml
+kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
 ```
