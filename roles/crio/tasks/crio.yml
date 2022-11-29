@@ -29,7 +29,7 @@
 - name: service setup crio
   systemd:
     name: crio
-    state: restarted
+    state: started
     enabled: true
 
 - name: Setup Module
