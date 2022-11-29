@@ -18,7 +18,7 @@
 - name: Install cri-o
   apt:
     name: "{{ item }}"
-    cache_updated: true
+    update_cache: yes
   with_items:
     - cri-o
     - cri-o-runc
