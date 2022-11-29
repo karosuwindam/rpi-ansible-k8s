@@ -1,7 +1,6 @@
 - name: Add crio keyring
   apt_key:
-    url: "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-
-o:{{ crio.version }}/{{ crio.os }}/Release.key"
+    url: "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:{{ crio.version }}/{{ crio.os }}/Release.key"
     state: present
 - name: Add crio repositories
   apt_repository:
