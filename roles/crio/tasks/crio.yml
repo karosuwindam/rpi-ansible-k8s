@@ -1,0 +1,39 @@
+- name: Add crio keyring
+  apt_key:
+    url: "{{ item }}"
+    state: present
+  with_items:
+    - "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:{{ crio.version }}/{{ crio.os }}/Release.key"
+    - "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/{{ crio.os }}/Release.key"
+- name: Add crio repositories
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items:
+    - "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/{{ crio.os }}/ /"
+    - "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/{{ crio.version }}/{{ crio.os }}/ /"
+
+- name: Upgrade apt repositories
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: Install cri-o
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - cri-o
+    - cri-o-runc
+
+- name: service setup crio
+  systemd:
+    name: crio
+    state: started
+    enabled: true
+
+- name: Setup Module
+  template:
+    src: ./templates/containerd.conf
+    dest: /etc/modules-load.d/containerd.conf
+    backup: false  

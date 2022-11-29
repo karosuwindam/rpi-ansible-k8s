@@ -10,3 +10,5 @@ go:
 	$(ANSIBLE_CMD) go.yml
 docker:
 	$(ANSIBLE_CMD) docker.yml
+crio:
+	$(ANSIBLE_CMD) crio.yml
