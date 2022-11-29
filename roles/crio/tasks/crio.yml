@@ -2,7 +2,7 @@
   apt_key:
     url: "{{ item }}"
     state: present
-  with_itmes:
+  with_items:
     - "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:{{ crio.version }}/{{ crio.os }}/Release.key"
     - "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/{{ crio.os }}/Release.key"
 - name: Add crio repositories
