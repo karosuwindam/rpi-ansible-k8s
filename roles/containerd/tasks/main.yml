@@ -1,2 +1,3 @@
 - include: ./containerd.yml
 - include: ./cgroup.yml
+- include: ./circtl.yml
