@@ -1,0 +1,5 @@
+- name: Setup Module
+  template:
+    src: ./templates/crictl.yaml
+    dest: /etc/crictl.yaml
+    backup: true  
