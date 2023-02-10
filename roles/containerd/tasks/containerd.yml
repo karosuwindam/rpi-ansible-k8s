@@ -2,13 +2,14 @@
   apt_key:
     url: "https://download.docker.com/linux/raspbian/gpg"
     state: present
-- name: Add crio repositories
+- name: Add crio repositories 64arm
   apt_repository:
-    repo: "deb [arch=arm64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian buster stable"
+    # repo: "deb [arch=arm64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian buster stable"
+    repo: "deb [arch=arm64] https://download.docker.com/linux/debian buster stable"
     state: present
   when:
     ansible_architecture == "aarch64"
-- name: Add crio repositories
+- name: Add crio repositories arm
   apt_repository:
     repo: "deb [arch=armhf signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian buster stable"
     state: present
@@ -18,7 +19,7 @@
   apt:
     upgrade: dist
     update_cache: yes
-    
+
 - name: install containerd
   apt:
     name:
