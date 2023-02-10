@@ -22,7 +22,7 @@
 - name: install containerd.io
   apt:
     name:
-      - containerd
+      - containerd.io
 - name: Setup Module
   template:
     src: ./templates/containerd.conf
