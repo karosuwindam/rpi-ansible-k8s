@@ -14,11 +14,15 @@
     state: present
   when:
     ansible_architecture == "armv7l"
+- name: Upgrade apt repositories
+  apt:
+    upgrade: dist
+    update_cache: yes
+    
 - name: install containerd
   apt:
     name:
       - containerd
-
 - name: Setup Module
   template:
     src: ./templates/containerd.conf
