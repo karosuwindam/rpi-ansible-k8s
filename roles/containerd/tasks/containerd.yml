@@ -1,8 +1,28 @@
-- name: install containerd
+- name: Add docker keyring
+  apt_key:
+    url: "https://download.docker.com/linux/raspbian/gpg"
+    state: present
+- name: Add crio repositories 64arm
+  apt_repository:
+    repo: "deb [arch=arm64] https://download.docker.com/linux/debian buster stable"
+    state: present
+  when:
+    ansible_architecture == "aarch64"
+- name: Add crio repositories arm
+  apt_repository:
+    repo: "deb [arch=armhf] https://download.docker.com/linux/debian buster stable"
+    state: present
+  when:
+    ansible_architecture == "armv7l"
+- name: Upgrade apt repositories
+  apt:
+    upgrade: dist
+    update_cache: yes
+
+- name: install containerd.io
   apt:
     name:
-      - containerd
-
+      - containerd.io
 - name: Setup Module
   template:
     src: ./templates/containerd.conf
