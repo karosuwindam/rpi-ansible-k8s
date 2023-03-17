@@ -1,0 +1,21 @@
+- name: buildctl create install folder
+  ansible.builtin.file:
+    path: /usr/local/buildkit
+    state: directory
+    owner: root
+    group: root
+
+- name: buildctl download
+  unarchive:
+    src: https://github.com/moby/buildkit/releases/download/v0.10.3/buildkit-v0.10.3.linux-arm64.tar.gz
+    dest: /usr/local/buildkit
+    remote_src: yes
+- name: read bashrc
+  shell: cat /home/{{ ansible_ssh_user }}/.bashrc
+  register: bashrc
+- name: pass add
+  lineinfile:
+    path: /home/{{ ansible_ssh_user }}/.bashrc
+    regexp: '^export PATH='
+    line: 'export PATH=$PATH:/usr/local/buildkit/bin'
+  when: "'/usr/local/buildkit/bin' not in bashrc.stdout"

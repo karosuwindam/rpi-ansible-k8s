@@ -12,3 +12,5 @@ docker:
 	$(ANSIBLE_CMD) docker.yml
 crio:
 	$(ANSIBLE_CMD) crio.yml
+buildkit:
+	$(ANSIBLE_CMD) buildkit.yml
