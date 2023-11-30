@@ -1,9 +1,9 @@
 - name: OS Version Fail
   fail:
-    msg: "OS version not {{ansible_distribution_major_version}}"
-  when: ansible_distribution_major_version != "10" or
-    ansible_distribution_major_version != "11" or
-    ansible_distribution_major_version != "12"
+    msg: "OS version not"
+  when: ansible_distribution_major_version == "10" or
+    ansible_distribution_major_version == "11" or
+    ansible_distribution_major_version == "12"
 - name: Set boot file
   shell: echo "/boot/cmdline.txt"
   register: bootfile
