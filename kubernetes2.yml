@@ -6,6 +6,6 @@
   roles:
     - oscheck
     - boot
-    # - swap
-    # - network
+    - swap
+    - network
     # - kubernetes
