@@ -1,3 +1,7 @@
+- name: OS Version Fail
+  fail:
+    msg: "OS version not {{ os.dist }} {{ os.version }} {{ os.arch }}"
+  when: ansible_distribution_major_version != "10"
 - name: echo boot file
   shell: cat /boot/cmdline.txt
   register: bootcmd
