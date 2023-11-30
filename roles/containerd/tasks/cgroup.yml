@@ -3,4 +3,4 @@
     name:
       - cgroup-tools
       - cgroupfs-mount
-      - libcgroup1
+      # - libcgroup1
