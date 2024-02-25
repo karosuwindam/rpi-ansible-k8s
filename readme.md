@@ -24,6 +24,11 @@ cd rpi-ansible-k8s
 make kubernetes
 ```
 
+ansibleでlocaleで失敗する場合は以下のコマンドでlocaleを設定
+```
+sudo raspi-config
+```
+
 containerdをセットアップする
 ```
 make containerd
