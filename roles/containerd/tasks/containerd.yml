@@ -10,13 +10,13 @@
     repo: "deb [arch=arm64] https://download.docker.com/linux/debian buster stable"
     state: present
   when:
-    ansible_architecture == "aarch64" and archdata.stdout == 64
+    ansible_architecture == "aarch64" and archdata.stdout == "64"
 - name: Add crio repositories arm
   apt_repository:
     repo: "deb [arch=armhf] https://download.docker.com/linux/debian buster stable"
     state: present
   when:
-    ansible_architecture == "armv7l" or archdata.stdout == 32
+    ansible_architecture == "armv7l" or archdata.stdout == "32"
 - name: Upgrade apt repositories
   apt:
     upgrade: dist
