@@ -3,12 +3,24 @@
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
     state: present
 
+- name: Add Kubernetes keyring2
+  apt_key:
+    url: https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key
+    state: present
+
 - name: Add kubernetes repositories
   apt_repository:
     repo: "{{ item }}"
     state: present
   with_items:
     - deb https://apt.kubernetes.io/ kubernetes-xenial main
+    - "deb  https://pkgs.k8s.io/core:/stable:/v1.27/deb/ /"
+    - "deb  https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /"
+    - "deb  https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /"
+
+- name: read archdata
+  shell: getconf LONG_BIT
+  register: archdata
 
 - name: Install k8s-app
   apt:
@@ -17,6 +29,18 @@
     - kubectl
     - kubelet
     - kubeadm
+  when:
+    archdata.stdout == "64"
+
+- name: Install k8s-app arm
+  apt:
+    name: "{{ item }}=1.26.7-00"
+  with_items:
+    - kubectl
+    - kubelet
+    - kubeadm
+  when:
+    archdata.stdout == "32"
 
 - name: Apt Mark
   dpkg_selections:
