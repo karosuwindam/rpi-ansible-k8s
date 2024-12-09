@@ -2,11 +2,17 @@
   apt_key:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
     state: present
+  when:
+    archdata.stdout == "32"
 
 - name: Add Kubernetes keyring2
-  apt_key:
-    url: https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key
-    state: present
+  ansible.builtin.get_url:
+    url: "{{ k8s.key }}"
+    dest: /etc/apt/keyrings/kubernetes-apt-keyring.asc
+    mode: '0644'
+    force: true
+  when:
+    archdata.stdout == "64"
 
 - name: Add kubernetes repositories
   apt_repository:
@@ -14,9 +20,21 @@
     state: present
   with_items:
     - deb https://apt.kubernetes.io/ kubernetes-xenial main
-    - "deb  https://pkgs.k8s.io/core:/stable:/v1.27/deb/ /"
-    - "deb  https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /"
-    - "deb  https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /"
+  when:
+    archdata.stdout == "32"
+
+
+- name: Add kubernetes repositories
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items:
+    - "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.asc] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /"
+    - "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.asc] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /"
+    - "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.asc] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /"
+  when:
+    archdata.stdout == "64"
+
 
 - name: read archdata
   shell: getconf LONG_BIT
