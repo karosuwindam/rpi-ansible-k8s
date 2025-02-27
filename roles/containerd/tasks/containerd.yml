@@ -33,7 +33,9 @@
     backup: false
 
 - name: Setup Containerd kubelet
-  template:
-    src: ./templates/config.toml
-    dest: /etc/containerd/config.toml
-    backup: false
+  shell: containerd config default | sed 's/SystemdCgroup = false/SystemdCgroup = true/'| sudo tee /etc/containerd/config.toml
+# - name: Setup Containerd kubelet
+#   template:
+#     src: ./templates/config.toml
+#     dest: /etc/containerd/config.toml
+#     backup: false
