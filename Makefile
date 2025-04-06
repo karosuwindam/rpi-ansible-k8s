@@ -1,9 +1,12 @@
-ANSIBLE_CMD := ANSIBLE_STDOUT_CALLBACK=yaml ANSIBLE_LOG_PATH=logs/install.`date +%Y%m%d%H%M%S`.log ansible-playbook -i inventory/hosts
+HOSTS := inventory/hosts
+ANSIBLE_CMD := ANSIBLE_STDOUT_CALLBACK=yaml ANSIBLE_LOG_PATH=logs/install.`date +%Y%m%d%H%M%S`.log ansible-playbook -i ${HOSTS}
 
 kubernetes2:
 	$(ANSIBLE_CMD) kubernetes2.yml
 kubernetes:
 	$(ANSIBLE_CMD) kubernetes.yml
+kubernetes-ubuntu:
+	$(ANSIBLE_CMD) kubernetes-ubuntu.yml
 containerd:
 	$(ANSIBLE_CMD) containerd.yml
 oscheck:

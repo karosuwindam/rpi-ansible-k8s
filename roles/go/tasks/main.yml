@@ -1,1 +1,1 @@
-- include: ./go.yml
+- include_tasks: ./go.yml

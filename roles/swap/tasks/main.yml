@@ -1,7 +1,18 @@
 - name: stop swapfile
   shell: dphys-swapfile swapoff
-- name: stop service swapfile
+  when:
+    ansible_distribution == 'Debian'
+- name: stop service swapfile for raspberry pi os
   systemd:
     name: dphys-swapfile
     state: stopped
     enabled: false
+  when:
+    ansible_distribution == 'Debian'
+- name: Disable swap for ubuntu
+  systemd:
+    name: swapfile.swap
+    state: stopped
+    enabled: false
+  when:
+    ansible_distribution == 'Ubuntu'

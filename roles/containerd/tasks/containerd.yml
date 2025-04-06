@@ -31,7 +31,13 @@
     src: ./templates/containerd.conf
     dest: /etc/modules-load.d/containerd.conf
     backup: false
-
+- name: create folder for containerd
+  file:
+    path: "/etc/containerd"
+    state: directory
+    owner: "root"
+    group: "root"
+    mode: "755"
 - name: Setup Containerd kubelet
   shell: containerd config default | sed 's/SystemdCgroup = false/SystemdCgroup = true/'| sudo tee /etc/containerd/config.toml
 # - name: Setup Containerd kubelet

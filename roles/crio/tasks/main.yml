@@ -1,1 +1,1 @@
-- include: ./crio.yml
+- include_tasks: ./crio.yml

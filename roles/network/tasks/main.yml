@@ -1,5 +1,5 @@
-- include: ./net-adapter.yml
-- include: ./iptables.yml
+- include_tasks: ./net-adapter.yml
+- include_tasks: ./iptables.yml
   when: ansible_distribution_major_version == "10" or
     ansible_distribution_major_version == "11"
-- include: ./library.yml
+- include_tasks: ./library.yml

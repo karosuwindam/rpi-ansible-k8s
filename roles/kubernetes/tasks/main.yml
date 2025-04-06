@@ -66,3 +66,8 @@
     - kubectl
     - kubelet
     - kubeadm
+# - name: Install VXLAN
+#   apt:
+#    name: "linux-modules-extra-raspi"
+#   when:
+#     ansible_distribution == "Ubuntu"

@@ -1,0 +1,10 @@
+- hosts: localhost
+  become: yes
+  become_method: sudo
+  vars_files:
+    - vars/all/secrets-ubuntu.yml
+  roles:
+    - oscheck
+    - swap
+    - network
+    - kubernetes
